@@ -3,9 +3,11 @@ package com.alkemy.icons.mapper;
 import com.alkemy.icons.dto.ContinenteDTO;
 import com.alkemy.icons.dto.IconDTO;
 import com.alkemy.icons.dto.PaisDTO;
+import com.alkemy.icons.entity.IconEntity;
 import com.alkemy.icons.entity.PaisEntity;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +26,9 @@ public class PaisMapper {
         entity.setCantidadHabitantes(dto.getCantidadHabitantes());
         entity.setSuperficie(dto.getSuperficie());
         entity.setContinenteId(dto.getContinenteId());
+        // icons
+        Set<IconEntity> icons = this.iconMapper.iconDTOList2Entity(dto.getIcons());
+        entity.setIcons(icons);
         return entity;
     }
     
@@ -34,9 +39,6 @@ public class PaisMapper {
         dto.setDenominacion(entity.getDenominacion());
         dto.setCantidadHabitantes(entity.getCantidadHabitantes());
         dto.setSuperficie(entity.getSuperficie());
-        
-        ContinenteDTO continenteDTO = this.continenteMapper.continenteEntity2DTO(entity.getContinente());
-        dto.setContinente(continenteDTO);
         dto.setContinenteId(entity.getContinenteId());
         if (loadPaises) {
             List<IconDTO> iconsDTO = this.iconMapper.iconEntitySet2DTOList(entity.getIcons(), false);

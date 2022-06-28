@@ -1,5 +1,14 @@
 package com.alkemy.icons.service.impl;
 
-public class PaisServiceImpl {
+import com.alkemy.icons.entity.PaisEntity;
+import com.alkemy.icons.service.PaisService;
+
+public class PaisServiceImpl implements PaisService{
+
+    @Override
+    public PaisEntity getEntityById(Long idPais) {
+        PaisEntity pais = new PaisEntity();
+        return pais;
+    }
 
 }
