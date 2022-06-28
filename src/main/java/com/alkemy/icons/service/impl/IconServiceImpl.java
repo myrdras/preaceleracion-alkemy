@@ -5,6 +5,7 @@ import com.alkemy.icons.dto.IconDTO;
 import com.alkemy.icons.dto.IconFiltersDTO;
 import com.alkemy.icons.entity.IconEntity;
 import com.alkemy.icons.entity.PaisEntity;
+import com.alkemy.icons.exception.ParamNotFound;
 import com.alkemy.icons.mapper.IconMapper;
 import com.alkemy.icons.repository.IconRepository;
 import com.alkemy.icons.repository.specifications.IconSpecification;
