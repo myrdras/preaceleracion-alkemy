@@ -1,6 +1,5 @@
 package com.alkemy.icons.mapper;
 
-import com.alkemy.icons.dto.ContinenteDTO;
 import com.alkemy.icons.dto.IconDTO;
 import com.alkemy.icons.dto.PaisDTO;
 import com.alkemy.icons.entity.IconEntity;
@@ -16,8 +15,6 @@ public class PaisMapper {
     
     @Autowired
     private IconMapper iconMapper;
-    @Autowired
-    private ContinenteMapper continenteMapper;
     
     public PaisEntity paisDTO2Entity(PaisDTO dto) {
         PaisEntity entity = new PaisEntity();
