@@ -32,7 +32,6 @@ public class IconMapper {
         return entity;
     }
     
-    
     public IconDTO iconEntity2DTO(IconEntity entity, boolean loadPaises) {
         IconDTO dto = new IconDTO();
         dto.setId(entity.getId());
@@ -48,13 +47,11 @@ public class IconMapper {
         return dto;
     }
     
-    
     private LocalDate string2LocalDate(String stringDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(stringDate, formatter);
         return date;
     }
-    
     
     public void iconEntityRefreshValues(IconEntity entity, IconDTO iconDTO) {
         entity.setImagen(iconDTO.getImagen());
@@ -65,7 +62,6 @@ public class IconMapper {
         entity.setAltura(iconDTO.getAltura());
         entity.setHistoria(iconDTO.getHistoria());
     }
-    
     
     public Set<IconEntity> iconDTOList2Entity(List<IconDTO> dtos) {
         Set<IconEntity> entities = new HashSet<>();
@@ -78,6 +74,7 @@ public class IconMapper {
     /**
      * @param entities (Set or List)
      * @param loadPaises
+     * @return 
     */
     public List<IconDTO> iconEntitySet2DTOList(Collection<IconEntity> entities, boolean loadPaises) {
         List<IconDTO> dtos = new ArrayList<>();

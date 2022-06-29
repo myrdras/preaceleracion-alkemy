@@ -9,7 +9,9 @@ import com.alkemy.icons.service.PaisService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PaisServiceImpl implements PaisService{
     
     @Autowired
@@ -20,7 +22,7 @@ public class PaisServiceImpl implements PaisService{
     @Override
     public List<PaisDTO> getAllPaises() {
         List<PaisEntity> entities = paisRepository.findAll();
-        List<PaisDTO> dtos = paisMapper.paisEntityList2DTOList(entities, true);
+        List<PaisDTO> dtos = paisMapper.paisEntityList2DTOList(entities, false);
         return dtos;
     }
 

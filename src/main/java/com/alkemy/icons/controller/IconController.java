@@ -22,10 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("icons")
 public class IconController {
     
-    private IconService iconService;
-    
     @Autowired
-    public IconController(IconService iconService) { this.iconService = iconService;}
+    private IconService iconService;
     
     @GetMapping("/all")
     public ResponseEntity<List<IconBasicDTO>> getAll() {
@@ -65,6 +63,18 @@ public class IconController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.iconService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+    
+    @PostMapping("/{id}/pais/{idPais}")
+    public ResponseEntity<Void> addPais(@PathVariable Long id, @PathVariable Long idPais) {
+        this.iconService.addPais(id, idPais);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+    
+    @DeleteMapping("/{id}/pais/{idPais}")
+    public ResponseEntity<Void> removePais(@PathVariable Long id, @PathVariable Long idPais) {
+        this.iconService.removePais(id, idPais);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
     
