@@ -1,5 +1,6 @@
 package com.alkemy.icons.service.impl;
 
+import com.alkemy.icons.dto.PaisBasicDTO;
 import com.alkemy.icons.dto.PaisDTO;
 import com.alkemy.icons.entity.PaisEntity;
 import com.alkemy.icons.exception.ParamNotFound;
@@ -20,9 +21,9 @@ public class PaisServiceImpl implements PaisService{
     private PaisRepository paisRepository;
 
     @Override
-    public List<PaisDTO> getAllPaises() {
+    public List<PaisBasicDTO> getAllBasic() {
         List<PaisEntity> entities = paisRepository.findAll();
-        List<PaisDTO> dtos = paisMapper.paisEntityList2DTOList(entities, false);
+        List<PaisBasicDTO> dtos = paisMapper.paisBasicListEntity2DTO(entities);
         return dtos;
     }
 
@@ -30,7 +31,7 @@ public class PaisServiceImpl implements PaisService{
     public PaisEntity getEntityById(Long idPais) {
         Optional<PaisEntity> entity = paisRepository.findById(idPais);
         if (!entity.isPresent()) {
-            throw new ParamNotFound("Id icono no valido");
+            throw new ParamNotFound("Id pais no valido");
         }
         PaisEntity pais = entity.get();
         return pais;
@@ -40,6 +41,18 @@ public class PaisServiceImpl implements PaisService{
     public PaisDTO save(PaisDTO dto) {
         PaisEntity entity = paisMapper.paisDTO2Entity(dto);
         PaisEntity entitySaved = paisRepository.save(entity);
+        PaisDTO result = paisMapper.paisEntity2DTO(entitySaved, false);
+        return result;
+    }
+
+    @Override
+    public PaisDTO update(Long id, PaisDTO dto) {
+        Optional<PaisEntity> entity = paisRepository.findById(id);
+        if (!entity.isPresent()) {
+            throw new ParamNotFound("Id pais no valido");
+        }
+        paisMapper.paisEntityRefreshValues(entity.get(), dto);
+        PaisEntity entitySaved = paisRepository.save(entity.get());
         PaisDTO result = paisMapper.paisEntity2DTO(entitySaved, false);
         return result;
     }

@@ -21,12 +21,12 @@ import org.springframework.stereotype.Service;
 public class IconServiceImpl implements IconService{
     
     // Repo
-    private IconRepository iconRepository;
-    private IconSpecification iconSpecification;
+    private final IconRepository iconRepository;
+    private final IconSpecification iconSpecification;
     // Mapper
-    private IconMapper iconMapper;
+    private final IconMapper iconMapper;
     // Service
-    private PaisService paisService;
+    private final PaisService paisService;
     
     @Autowired
     public IconServiceImpl(
@@ -53,7 +53,7 @@ public class IconServiceImpl implements IconService{
         if (!entity.isPresent()) {
             throw new ParamNotFound("Id icono no valido");
         }
-        IconDTO icon = this.iconMapper.iconEntity2DTO(entity.get(), true);
+        IconDTO icon = this.iconMapper.iconEntity2DTO(entity.get(), false);
         return icon;
     }
 
@@ -61,7 +61,7 @@ public class IconServiceImpl implements IconService{
     public List<IconDTO> getByFilters(String name, String date, Set<Long> cities, String order) {
         IconFiltersDTO filtersDTO = new IconFiltersDTO(name, date, cities, order);
         List<IconEntity> entities = this.iconRepository.findAll(this.iconSpecification.getByFilters(filtersDTO));
-        List<IconDTO> dtos = this.iconMapper.iconEntitySet2DTOList(entities, true);
+        List<IconDTO> dtos = this.iconMapper.iconEntitySet2DTOList(entities, false);
         return dtos;
     }
 

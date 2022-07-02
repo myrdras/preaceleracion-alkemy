@@ -1,6 +1,7 @@
 package com.alkemy.icons.mapper;
 
 import com.alkemy.icons.dto.IconDTO;
+import com.alkemy.icons.dto.PaisBasicDTO;
 import com.alkemy.icons.dto.PaisDTO;
 import com.alkemy.icons.entity.IconEntity;
 import com.alkemy.icons.entity.PaisEntity;
@@ -48,6 +49,27 @@ public class PaisMapper {
         List<PaisDTO> dtos = new ArrayList<>();
         for (PaisEntity entity : entities) {
             dtos.add(this.paisEntity2DTO(entity, loadIcons));
+        }
+        return dtos;
+    }
+    
+    public void paisEntityRefreshValues(PaisEntity entity, PaisDTO dto) {
+        entity.setImagen(dto.getImagen());
+        entity.setDenominacion(dto.getDenominacion());
+        entity.setCantidadHabitantes(dto.getCantidadHabitantes());
+        entity.setSuperficie(dto.getSuperficie());
+    }
+    
+    public List<PaisBasicDTO> paisBasicListEntity2DTO(List<PaisEntity> entities) {
+        List<PaisBasicDTO> dtos = new ArrayList<>();
+        PaisBasicDTO basicDTO;
+        for (PaisEntity entity : entities) {
+            basicDTO = new PaisBasicDTO();
+            basicDTO.setId(entity.getId());
+            basicDTO.setImagen(entity.getImagen());
+            basicDTO.setDenominacion(entity.getDenominacion());
+            basicDTO.setCantidadHabitantes(entity.getCantidadHabitantes());
+            dtos.add(basicDTO);
         }
         return dtos;
     }
