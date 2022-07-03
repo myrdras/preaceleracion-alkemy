@@ -30,7 +30,7 @@ public class PaisMapper {
         return entity;
     }
     
-    public PaisDTO paisEntity2DTO(PaisEntity entity, boolean loadPaises) {
+    public PaisDTO paisEntity2DTO(PaisEntity entity, boolean loadIcons) {
         PaisDTO dto = new PaisDTO();
         dto.setId(entity.getId());
         dto.setImagen(entity.getImagen());
@@ -38,7 +38,7 @@ public class PaisMapper {
         dto.setCantidadHabitantes(entity.getCantidadHabitantes());
         dto.setSuperficie(entity.getSuperficie());
         dto.setContinenteId(entity.getContinenteId());
-        if (loadPaises) {
+        if (loadIcons) {
             List<IconDTO> iconsDTO = this.iconMapper.iconEntitySet2DTOList(entity.getIcons(), false);
             dto.setIcons(iconsDTO);
         }

@@ -12,12 +12,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
 public class IconMapper {
     
     @Autowired
+    @Lazy
     private PaisMapper paisMapper;
     
     public IconEntity iconDTO2Entity(IconDTO dto) {
@@ -79,7 +81,7 @@ public class IconMapper {
     public List<IconDTO> iconEntitySet2DTOList(Collection<IconEntity> entities, boolean loadPaises) {
         List<IconDTO> dtos = new ArrayList<>();
         for (IconEntity entity : entities) {
-            dtos.add(this.iconEntity2DTO(entity, loadPaises));
+            dtos.add(this.iconEntity2DTO(entity, false));
         }
         return dtos;
     }

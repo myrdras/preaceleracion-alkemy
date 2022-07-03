@@ -53,7 +53,7 @@ public class IconServiceImpl implements IconService{
         if (!entity.isPresent()) {
             throw new ParamNotFound("Id icono no valido");
         }
-        IconDTO icon = this.iconMapper.iconEntity2DTO(entity.get(), false);
+        IconDTO icon = this.iconMapper.iconEntity2DTO(entity.get(), true);
         return icon;
     }
 
@@ -61,7 +61,7 @@ public class IconServiceImpl implements IconService{
     public List<IconDTO> getByFilters(String name, String date, Set<Long> cities, String order) {
         IconFiltersDTO filtersDTO = new IconFiltersDTO(name, date, cities, order);
         List<IconEntity> entities = this.iconRepository.findAll(this.iconSpecification.getByFilters(filtersDTO));
-        List<IconDTO> dtos = this.iconMapper.iconEntitySet2DTOList(entities, false);
+        List<IconDTO> dtos = this.iconMapper.iconEntitySet2DTOList(entities, true);
         return dtos;
     }
 
@@ -69,7 +69,7 @@ public class IconServiceImpl implements IconService{
     public IconDTO save(IconDTO dto) {
         IconEntity entity = this.iconMapper.iconDTO2Entity(dto);
         IconEntity entitySaved = this.iconRepository.save(entity);
-        IconDTO result = this.iconMapper.iconEntity2DTO(entitySaved, false);
+        IconDTO result = this.iconMapper.iconEntity2DTO(entitySaved, true);
         return result;
     }
 
@@ -81,7 +81,7 @@ public class IconServiceImpl implements IconService{
         }
         this.iconMapper.iconEntityRefreshValues(entity.get(), icon);
         IconEntity entitySaved = this.iconRepository.save(entity.get());
-        IconDTO result = this.iconMapper.iconEntity2DTO(entitySaved, false);
+        IconDTO result = this.iconMapper.iconEntity2DTO(entitySaved, true);
         return result;
     }
 

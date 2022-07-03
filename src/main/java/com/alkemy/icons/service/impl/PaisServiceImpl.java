@@ -41,7 +41,7 @@ public class PaisServiceImpl implements PaisService{
     public PaisDTO save(PaisDTO dto) {
         PaisEntity entity = paisMapper.paisDTO2Entity(dto);
         PaisEntity entitySaved = paisRepository.save(entity);
-        PaisDTO result = paisMapper.paisEntity2DTO(entitySaved, false);
+        PaisDTO result = paisMapper.paisEntity2DTO(entitySaved, true);
         return result;
     }
 
@@ -53,7 +53,7 @@ public class PaisServiceImpl implements PaisService{
         }
         paisMapper.paisEntityRefreshValues(entity.get(), dto);
         PaisEntity entitySaved = paisRepository.save(entity.get());
-        PaisDTO result = paisMapper.paisEntity2DTO(entitySaved, false);
+        PaisDTO result = paisMapper.paisEntity2DTO(entitySaved, true);
         return result;
     }
 
