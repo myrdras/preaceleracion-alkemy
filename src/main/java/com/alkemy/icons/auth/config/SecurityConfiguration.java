@@ -4,6 +4,7 @@ import com.alkemy.icons.auth.filter.JwtRequestFilter;
 import com.alkemy.icons.auth.service.UserDetailsCustomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,6 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsCustomService userDetailsCustomService;
     @Autowired
+    @Lazy
     private JwtRequestFilter jwtRequestFilter;
     
     @Override
