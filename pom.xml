@@ -68,6 +68,12 @@
             <version>0.9.1</version>
         </dependency>
         <!-- Auth -->
+        <dependency>
+            <groupId>com.sendgrid</groupId>
+            <artifactId>sendgrid-java</artifactId>
+            <version>4.7.6</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <build>
